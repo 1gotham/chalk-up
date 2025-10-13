@@ -31,8 +31,16 @@ public class UserService {
     }
 
     public RegisterResponse registerResponse(RegisterRequest registerRequest){
-        //sprawdzenie czy istnieje username,email
         User newUser = new User();
+
+        //Dodac indywidualne exceptiony
+        if(userRepository.findByUsername(registerRequest.getUsername()) != null){
+            throw new IllegalArgumentException("User with this name already exists");
+        }
+
+        if(userRepository.findByEmail(registerRequest.getEmail()) != null){
+            throw new IllegalArgumentException("User with this email already exists");
+        }
 
         newUser.setUsername(registerRequest.getUsername());
         newUser.setEmail(registerRequest.getEmail());
@@ -40,6 +48,6 @@ public class UserService {
 
         userRepository.save(newUser);
 
-        return new RegisterResponse(registerRequest.getUsername(), "Rejestracja zakończona sukcesem");
+        return new RegisterResponse(registerRequest.getUsername(), "Registration successful");
     }
 }
