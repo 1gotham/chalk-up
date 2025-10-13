@@ -9,5 +9,4 @@ public class ChalkUpApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ChalkUpApplication.class, args);
 	}
-
 }
