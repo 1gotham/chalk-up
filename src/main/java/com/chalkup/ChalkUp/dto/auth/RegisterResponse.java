@@ -1,7 +1,11 @@
 package com.chalkup.ChalkUp.dto.auth;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class RegisterResponse {
+    @NotBlank
     private String username;
+
     private String message;
 
     public RegisterResponse(String username, String message) {
